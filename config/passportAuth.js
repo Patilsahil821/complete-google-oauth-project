@@ -1,3 +1,4 @@
+const { authenticate } = require("passport")
 const passport = require("passport")
 const GoogleStrategy = require("passport-google-oauth2").Strategy
 const User = require("../model/model")
@@ -8,7 +9,8 @@ passport.use(
       clientID: process.env.CLIENTID,
       clientSecret: process.env.CLIENTSECRET,
       callbackURL: "/auth/google/redirect",
-      passReqToCallback: true
+      passReqToCallback: true,
+      proxy: true
     },
     (request, accessToken, refreshToken, profile, done) => {
       console.log("hitted....")
